@@ -1,0 +1,108 @@
+{
+  "id": "com.example.decompositiontree",
+  "version": "1.0.0",
+  "name": "Decomposition Tree",
+  "description": "Left-to-right hierarchical tree with horizontal value bars and expand/collapse on click. Supports SAC data binding (multiple dimensions + one measure) and a script-API fallback.",
+  "newInstancePrefix": "DecompositionTree",
+  "icon": "/icon.png",
+  "vendor": "Custom",
+  "eula": "",
+  "license": "",
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "com-example-decomposition-tree",
+      "url": "/decomposition_tree.js",
+      "integrity": "",
+      "ignoreIntegrity": true
+    },
+    {
+      "kind": "styling",
+      "tag": "com-example-decomposition-tree-styling",
+      "url": "/decomposition_tree_styling.js",
+      "integrity": "",
+      "ignoreIntegrity": true
+    }
+  ],
+  "properties": {
+    "data": {
+      "type": "string",
+      "description": "Hierarchical data as a JSON string. Used only when no data binding is configured. Shape: { name, value, children?: [...] }.",
+      "default": ""
+    },
+    "barColor": {
+      "type": "string",
+      "description": "Bar color (any CSS color).",
+      "default": "#1f77b4"
+    },
+    "rootLabel": {
+      "type": "string",
+      "description": "Label for the synthetic root node when data comes from data binding.",
+      "default": "Total"
+    },
+    "topN": {
+      "type": "integer",
+      "description": "At each level, show only the top N children by measure value. Remainder is summed into an 'Others' node. 0 disables truncation.",
+      "default": 10
+    },
+    "defaultExpandDepth": {
+      "type": "integer",
+      "description": "Depth visible on first render. 1 = root + first level expanded. Deeper levels start collapsed; users click to drill.",
+      "default": 1
+    },
+    "scaleUnit": {
+      "type": "string",
+      "description": "Value formatting: 'raw' (full number), 'auto' (K/M/B), 'thousand' (K), 'million' (M), 'billion' (B).",
+      "default": "raw"
+    },
+    "lastClickedNode": {
+      "type": "string",
+      "description": "Name of the most recently clicked node. Read this in the onNodeClick event handler.",
+      "default": ""
+    },
+    "width": { "type": "integer", "default": 600 },
+    "height": { "type": "integer", "default": 400 }
+  },
+  "methods": {
+    "setData": {
+      "description": "Sets the tree data from a JSON string. Ignored when data binding has rows. Shape: { name, value, children?: [...] }.",
+      "parameters": [
+        { "name": "jsonString", "type": "string", "description": "JSON-encoded hierarchical data." }
+      ]
+    },
+    "setBarColor": {
+      "description": "Sets the bar color.",
+      "parameters": [
+        { "name": "color", "type": "string", "description": "CSS color (e.g. '#1f77b4', 'steelblue')." }
+      ],
+      "body": "this.barColor = color;"
+    },
+    "expandAll": {
+      "description": "Expands all nodes."
+    },
+    "collapseAll": {
+      "description": "Collapses every node except the root."
+    }
+  },
+  "events": {
+    "onNodeClick": {
+      "description": "Fired when a node is clicked. Read property 'lastClickedNode' for the clicked node's name."
+    }
+  },
+  "dataBindings": {
+    "treeData": {
+      "feeds": [
+        {
+          "id": "dimensions",
+          "description": "Hierarchy levels, ordered outermost to innermost.",
+          "type": "dimension"
+        },
+        {
+          "id": "measure",
+          "description": "Value used for bar size and node aggregation.",
+          "type": "mainStructureMember"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Build artifact
+widget.zip
+
+# OS / editor metadata
+.DS_Store
+*.log
+node_modules/
+
+# Local-only files (not part of the widget project)
+BLOG.md
+CLAUDE.md
+EXAMPLES.md
+CustomWidgetDevGuide_en.pdf
