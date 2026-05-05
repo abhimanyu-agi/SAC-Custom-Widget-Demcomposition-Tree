@@ -1,7 +1,7 @@
 # SAC Decomposition Tree
 
 A custom widget for **SAP Analytics Cloud** that renders a left-to-right hierarchical
-decomposition tree, the way Power BI does — labeled nodes, a horizontal value bar per node,
+decomposition tree, the way Power BI does  labeled nodes, a horizontal value bar per node,
 expand/collapse on click, and a Top-N + "Others" rollup so high-cardinality dimensions
 don't melt your browser.
 
@@ -11,21 +11,21 @@ Built with **D3.js**, three small JavaScript files, and one JSON manifest. No bu
 
 ## Features
 
-- **SAC data binding** — drag dimensions + a measure into the auto-generated Builder panel.
+- **SAC data binding**  drag dimensions + a measure into the auto-generated Builder panel.
   No code needed for designers.
-- **Top-N + Others** per level — keeps the tree fast when a dimension has thousands of
+- **Top-N + Others** per level  keeps the tree fast when a dimension has thousands of
   distinct values.
-- **Default-collapse depth** — tree starts focused; users click to drill.
-- **Smooth animations** — 250 ms enter/exit/update transitions on every interaction.
-- **Selected-path highlight** — clicking a node lights up root → that node so users
+- **Default-collapse depth**  tree starts focused; users click to drill.
+- **Smooth animations**  250 ms enter/exit/update transitions on every interaction.
+- **Selected-path highlight**  clicking a node lights up root → that node so users
   always know where they are.
-- **Dimension chips bar** — toggle bound dimensions on/off at runtime without re-binding.
-- **State preservation across filters** — when linked-analysis or input controls refilter
+- **Dimension chips bar**  toggle bound dimensions on/off at runtime without re-binding.
+- **State preservation across filters**  when linked-analysis or input controls refilter
   the data, your expand/collapse state survives.
-- **Configurable value formatting** — Raw / Auto (K, M, B) / Thousands / Millions / Billions.
-- **Hover tooltip** — full value, % of total, parent, unit.
-- **Empty state** — clear message when no data is bound (no misleading sample data).
-- **Script API** — `setData`, `setBarColor`, `expandAll`, `collapseAll`, plus `onNodeClick`
+- **Configurable value formatting**  Raw / Auto (K, M, B) / Thousands / Millions / Billions.
+- **Hover tooltip**  full value, % of total, parent, unit.
+- **Empty state**  clear message when no data is bound (no misleading sample data).
+- **Script API**  `setData`, `setBarColor`, `expandAll`, `collapseAll`, plus `onNodeClick`
   event.
 
 ---
@@ -48,7 +48,7 @@ zip widget.zip decomposition_tree.js decomposition_tree_styling.js icon.png
 ```
 
 The ZIP must have **no parent folder** and **no `__MACOSX/`** entries (Mac's right-click
-"Compress" creates these — use `zip` from the terminal instead).
+"Compress" creates these  use `zip` from the terminal instead).
 
 ### 3. Upload to SAC
 
@@ -118,8 +118,8 @@ var name = DecompositionTree_1.lastClickedNode;
 
 The widget defines one binding `treeData` with two feeds:
 
-- `dimensions` — type `dimension`, multiple values allowed, ordered outer → inner.
-- `measure` — type `mainStructureMember`, single value.
+- `dimensions`  type `dimension`, multiple values allowed, ordered outer → inner.
+- `measure`  type `mainStructureMember`, single value.
 
 Result rows are folded into a hierarchy by grouping on each dimension in order, summing
 the measure on intermediate nodes. Children are sorted descending by value at every level.
@@ -134,7 +134,7 @@ to SAC. To self-host instead:
 1. Serve this directory over HTTPS, e.g. `npx http-server -S -C cert.pem -K key.pem -p 8443`.
 2. Edit `decomposition_tree.json` and replace each `"url"` with the absolute URL,
    e.g. `https://localhost:8443/decomposition_tree.js`.
-3. Upload only the JSON to SAC — no ZIP needed.
+3. Upload only the JSON to SAC  no ZIP needed.
 
 For changes to take effect, you may need to delete and recreate the widget in SAC,
 since the resource ZIP is cached.
@@ -145,7 +145,7 @@ since the resource ZIP is cached.
 
 - **Browsers**: Chrome and Edge ≥ 79 only (SAC custom widget restriction).
 - **Data binding** in Analytics Designer works only in optimized view mode.
-- **D3 from CDN** (`cdn.jsdelivr.net`) — if your tenant blocks this, inline D3 into
+- **D3 from CDN** (`cdn.jsdelivr.net`)  if your tenant blocks this, inline D3 into
   `decomposition_tree.js` or self-host.
 - **Story filters** don't apply to custom widgets at design time (SDK p. 8).
 - **Universal account models** aren't supported with data binding.
@@ -158,18 +158,18 @@ since the resource ZIP is cached.
 
 | File | Purpose |
 |---|---|
-| `decomposition_tree.json` | Widget manifest — properties, methods, events, data binding. |
-| `decomposition_tree.js` | Main Web Component — D3 layout, transitions, click handling. |
-| `decomposition_tree_styling.js` | Styling panel — color, scale, top-N, expand depth. |
+| `decomposition_tree.json` | Widget manifest  properties, methods, events, data binding. |
+| `decomposition_tree.js` | Main Web Component  D3 layout, transitions, click handling. |
+| `decomposition_tree_styling.js` | Styling panel  color, scale, top-N, expand depth. |
 | `icon.png` | 16×16 PNG used in the widget picker. |
-| `widget.zip` | Build output — uploaded as the resource bundle. |
+| `widget.zip` | Build output  uploaded as the resource bundle. |
 | `CustomWidgetDevGuide_en.pdf` | Reference: SAC Custom Widget Developer Guide. |
 
 ---
 
 ## Roadmap
 
-- Linked analysis as the *source* — clicking a node filters other widgets.
+- Linked analysis as the *source*  clicking a node filters other widgets.
 - Drag-to-reorder dimensions in the chip bar.
 - Search/jump within the tree.
 - Multi-measure (primary + secondary bar).
@@ -183,5 +183,5 @@ since the resource ZIP is cached.
 ## License & credits
 
 - Visualization: [D3.js v7](https://d3js.org/), MIT licensed.
-- SAC Custom Widget framework: SAP — see `CustomWidgetDevGuide_en.pdf`.
+- SAC Custom Widget framework: SAP  see `CustomWidgetDevGuide_en.pdf`.
 - This widget: yours to use and modify.
