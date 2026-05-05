@@ -63,7 +63,7 @@ That's it. The widget shows up under **Custom Widgets** and can be dropped on an
 Drop the widget on a canvas. In the **Builder** tab on the right:
 
 1. Set the model.
-2. Drag one or more **dimensions** into the *Dimensions* feed (outer → inner).
+2. Drag one or more **dimensions** into the *Dimensions* feed 
 3. Drag a **measure** into the *Measure* feed.
 
 The tree populates with your data, sorted descending by measure at every level.
